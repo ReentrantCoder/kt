@@ -1,5 +1,5 @@
 <?php
-class Wheel
+class Wheel implements JsonSerializable
 {
     const FRONT_LEFT = 1;
     const FRONT_RIGHT = 2;
@@ -13,10 +13,8 @@ class Wheel
         $this->position = $position;
     }
 
-    public function __toString()
+    public function jsonSerialize()
     {
-        return $this->position . PHP_EOL;
+        return get_object_vars($this);
     }
 }
-
-echo new Wheel(Wheel::FRONT_LEFT) . PHP_EOL;
